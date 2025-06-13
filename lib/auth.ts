@@ -4,7 +4,7 @@ import { connectToDatabase } from "./db";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
 
-//properties are : providers , callbacks , pages , session 
+//auth options  are : providers , callbacks , pages , session ,secret
 export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
             },
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) {
-                    throw new Error("Missingg email ot password!");
+                    throw new Error("Missing email ot password!");
 
                 }
 
@@ -80,9 +80,5 @@ export const authOptions: NextAuthOptions = {
     },
     secret : process.env.NEXTAUTH_SECRET
 
-
-
-
 };
-
 
